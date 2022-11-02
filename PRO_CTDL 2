@@ -7,6 +7,7 @@
 #include<Windows.h>
 using namespace std;
 
+// Tô màu chữ 
 void textcolor(WORD color)
 {
     HANDLE hConsoleOutput;
@@ -23,6 +24,7 @@ void textcolor(WORD color)
     SetConsoleTextAttribute(hConsoleOutput, wAttributes);
 }
 
+// Xác định vị trí 
 void gotoxy(int x, int y)
 {
 	COORD pos = { x, y };
@@ -154,7 +156,7 @@ void setEmail(string _Email)
     {
         string FilePath = "\"del " + FileName + ".txt\"";
         char* strDelete = new char[FilePath.length() + 1];
-        strcpy(strDelete, FilePath.c_str()); 
+        strcpy(strDelete, FilePath.c_str());  // chuyển kiểu string thành char*
         system(strDelete);
     }
 
@@ -275,13 +277,14 @@ void MenuEmployee()
 
 }
 
+// Mã hóa mật khẩu thành dấu *
 void MaHoaPassword(char* &MatKhau, char x, int size)
 {
     x = 'a';
     size = 0;
-    while(x != 13) 
+    while(x != 13) // 13: phím Enter
     {
-        x = getch(); 
+        x = getch(); // sử dụng getch() để nhập vì getch() bắt phím ngay sau khi nhập, thay vì dùng cin thì mỗi lần nhập 1 kí tự phải nhấn Enter sẽ không phù hợp
         if(x == 13)
         {
             break;
@@ -294,9 +297,9 @@ void MaHoaPassword(char* &MatKhau, char x, int size)
                 if(x != 8) { break; }
             }
         }
-        if(x == 8) 
+        if(x == 8) // 8: phím Backspace
         {
-            if(size != 0) 
+            if(size != 0) // nếu size mà khác 0 thì ta mới tiến hành xóa kí tự
             {
                 MatKhau[size] = '\0';
                 size--;
@@ -315,6 +318,7 @@ void MaHoaPassword(char* &MatKhau, char x, int size)
     MatKhau[size] = '\0';
 }
 
+// Đăng nhập vào hệ thống
 void Login(string &TaiKhoan, char* &MatKhau)
 {
     textcolor(3);
@@ -333,6 +337,7 @@ void Login(string &TaiKhoan, char* &MatKhau)
     cout << endl;
 }
 
+// Kiểm tra Username người dùng nhập vào có tồn tại trong file hay không, nếu nó đã tồn tại thì trả về false
 bool KiemTraUsernameEmployee(User* x, string Username)
 {
     ifstream FileIn;
@@ -348,6 +353,7 @@ bool KiemTraUsernameEmployee(User* x, string Username)
     return true; 
 }
 
+// Kiểm tra tài khoản và mật khẩu khi đăng nhập có chính xác hay không, nếu chính xác trả về true
 bool DangNhapThanhCong(User* x, char* FilePath, string &SaveUsername)
 {
     ifstream FileIn;
@@ -369,6 +375,11 @@ bool DangNhapThanhCong(User* x, char* FilePath, string &SaveUsername)
     return false;
 }
 
+ // THÊM EMPLOYEES
+ // B1: Cho người dùng nhập vào username cần thêm
+ // B2: Kiểm tra username nhập vào đã tồn tại hay chưa, nếu chưa thì thêm mới username vào file (Employees.txt), với password mặc định là "111111"
+ // B3: Tạo file [username.txt] tương ứng với tên username người dùng nhập vào
+ // B4: Cho người dùng nhập vào file [username.txt] các thông tin bao gồm họ tên, địa chỉ, sđt, email.
 void ThemEmployee(User* x)
 {
     string Username;
@@ -400,6 +411,11 @@ void ThemEmployee(User* x)
     }
 }
 
+ // XÓA EMPLOYEES
+ // B1: Khởi tạo 1 file tạm (EmployeesCopy.txt);
+ // B2: Đọc toàn bộ dữ liệu từ file gốc (Employees.txt) và ghi xuống file tạm nhưng ko đọc Username cần xóa
+ // B3: Xóa file gốc (Employees.txt) và file [username.txt], sau đó tạo lại file gốc (Employees.txt), mục đích của thao tác này là là rỗng dữ liệu trong file gốc
+ // B4: Đọc ngược dữ liệu từ file tạm và ghi vào file gốc và xóa file tạm
 void XoaEmployee(User* x, string Username)
 {
     ifstream FileIn;
@@ -444,6 +460,7 @@ void XoaEmployee(User* x, string Username)
     system("del EmployeesCopy.txt");
 }
 
+// Tìm EMPLOYEES
 void TimEmployee(User* x, string Username)
 {
     ifstream FileIn;
@@ -462,6 +479,7 @@ void TimEmployee(User* x, string Username)
     FileIn.close();  
 }
 
+// Xem thông tin tài khoản EMPLOYEES
 void XemThongTinTaiKhoan(User* x, string Username)
 {
     ifstream FileIn;
@@ -480,6 +498,13 @@ void XemThongTinTaiKhoan(User* x, string Username)
     FileIn.close();  
 }
 
+ // CẬP NHẬT THÔNG TIN EMPLOYEES
+ // B1: Cho người dùng nhập vào username cần cập nhật thông tin, sau đó chọn thuộc tính cần sửa
+ // B2: Tiếp tục nhập thông tin thay đổi vào biến Edit
+ // B3: Mở file [username.txt] đọc toàn bộ dữ liệu trong file nhưng không đọc dòng thông tin cần sửa
+ //     mà thay vào đó là đọc thông tin từ biến Edit vừa nhập vào vị trí cần thay đổi và ghi sang file tạm (NoName.txt)
+ // B4: Xóa file [username.txt] và tạo lại file vừa xóa, mục đích của thao tác này là làm rỗng dữ liệu trong file
+ // B5: Mở file (NoName.txt) đọc toàn bộ dữ liệu trong file này và ghi xuống file [username.txt], sau đó xóa file (NoName.txt)
 void CapNhatEmployee(User *x)
 {
     ifstream FileIn;
@@ -637,6 +662,11 @@ void CapNhatEmployee(User *x)
     }
 }
 
+ // HIỂN THỊ THÔNG TIN TOÀN BỘ EMPLOYEES
+ // B1: Khởi tạo mảng strUser[100]
+ // B2: Đọc toàn bộ dữ liệu từ file (Employees.txt) và gán cho từng phần tử trong mảng strUser[]
+ // B3: Duyệt mảng strUser[] để lấy từng phần tử trong mảng tương ứng với từng username và mở file [username.txt]
+ //     đọc toàn bộ thông tin trong file [username.txt] và xuất ra màn hình
 void HienThiThongTinEmployee(User* x)
 {
     ifstream FileIn;
@@ -669,6 +699,13 @@ void HienThiThongTinEmployee(User* x)
     }
 }
 
+ // THỰC HIỆN THAO TÁC ĐỔI MẬT KHẨU
+ // B1: Khởi tạo các chuỗi bao gồm CurrentPass là mật khẩu cũ hiện tại, NewPass là mật khẩu mới,
+ //     SaveUsername dùng để xác nhận tài khoản cần đổi mật khẩu
+ // B2: Tạo file tạm (NoName.txt), sau đó mở file (Employees.txt) đọc toàn bộ thông tin từ file này và ghi vào file tạm (NoName.txt)
+ // B3: Xóa file (Employees.txt) và tạo lại file vừa xóa, mục đích của thao tác này là làm rỗng dữ liệu trong file
+ // B4: Mở file tạm (NoName.txt) để đọc và kiểm các thông tin bao gồm username, password hiện tại
+ //     có khớp với username, password người dùng nhập vào hay không, nếu đúng thì ghi cập nhật vào file (Employees.txt)
 void ThucHienDoiMatKhau(User* x, string CurrentPass, string NewPass, string SaveUsername)
 {
     ifstream FileIn;
@@ -743,6 +780,7 @@ void ThucHienDoiMatKhau(User* x, string CurrentPass, string NewPass, string Save
     x->DeleteFile("NoName");
 }
 
+// Chức năng đổi mật khẩu kết hợp với hàm [ThucHienDoiMatKhau] để xử lý
 void DoiMatKhau(User *x)
 {
     ifstream FileIn;
