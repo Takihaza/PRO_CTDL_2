@@ -1,0 +1,20 @@
+C:\Users\Admin\Downloads\algorithmass\bin\Debug\algorithmass.exe
+C:\Users\Admin\Downloads\algorithmass\bin\Debug\algorithmass.pdb
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.csproj.AssemblyReference.cache
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.Form1.resources
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.csproj.GenerateResource.cache
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.exe
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.pdb
+C:\Users\Admin\Downloads\algorithmass\obj\Debug\algorithmass.Properties.Resources.resources
+D:\LTĐT\LTĐT-Prim\bin\Debug\algorithmass.exe
+D:\LTĐT\LTĐT-Prim\bin\Debug\algorithmass.pdb
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.csproj.AssemblyReference.cache
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.Form1.resources
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.Properties.Resources.resources
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.csproj.GenerateResource.cache
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.csproj.CoreCompileInputs.cache
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.exe
+D:\LTĐT\LTĐT-Prim\obj\Debug\algorithmass.pdb
+C:\Users\acer\source\repos\do an LTDT off\LTĐT-Prim\LTĐT-Prim\obj\Debug\algorithmass.exe
+C:\Users\acer\source\repos\do an LTDT off\LTĐT-Prim\LTĐT-Prim\obj\Debug\algorithmass.pdb
